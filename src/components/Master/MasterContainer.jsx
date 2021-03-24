@@ -31,7 +31,7 @@ const MasterContainer = () => {
   };
   const { loanAmount, interest, tenure } = state;
   const finalResult = getEMIAndInteres(
-    loanAmount * 100000, // loan amount is in lacks
+    loanAmount * 10000, // loan amount is in lacks
     interest,
     tenure,
   );
@@ -99,7 +99,7 @@ const MasterContainer = () => {
   if (!isNaN(totalInterest) || !isNaN(totalPayebleAmount)) {
     totalInterestPercentage = totalInterest/totalPayebleAmount * 100;
     totalPrincipalPercentage = 100 - totalInterestPercentage;
-    monthlyBreakupData = monthlyBreakup(loanAmount * 100000, loanEMI, interest);
+    monthlyBreakupData = monthlyBreakup(loanAmount * 10000, loanEMI, interest);
   }
   const { data, categories } = getBarData(monthlyBreakupData);
 
