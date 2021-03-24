@@ -58,7 +58,7 @@ export const formatCurrency = (amount, fraction = 2) => {
     minimumFractionDigits: fraction,
   }).format(amount);
 };
-
+let installmentNumber = 1;
 export const Breakup = (amount, emi, interestRate, arr = [], startMonth = 0) => {
   if (!amount || !emi || !interestRate) return [];
   const principal = Math.ceil(emi - ((interestRate/12)/100*amount));
@@ -70,9 +70,13 @@ export const Breakup = (amount, emi, interestRate, arr = [], startMonth = 0) => 
     arr[year] = [];
   }
   arr[year].push({
-    principal, interest, amount, month,
+    principal, interest, amount, month, installmentNumber: installmentNumber++
   });
-  if (amount <= 0) return arr;
+  if (amount <= 0) {
+    console.log(arr, "final")
+    installmentNumber = 1;
+    return arr;
+  }
   return Breakup(amount, emi, interestRate, arr, ++startMonth);
 };
 
@@ -83,7 +87,7 @@ export const getBarData = (breakup) => {
   const principal = [];
   const categories = [];
   const data = [];
-
+  let count = 1;
   Object.keys(breakup).map(year => {
     let principalTotal = 0;
     let interestTotal = 0;
@@ -104,6 +108,10 @@ export const getBarData = (breakup) => {
       name: 'Interest',
       data: interest,
     },
+    {
+      name: "No",
+      data: count++
+    }
   );
   return { data, categories };
 };

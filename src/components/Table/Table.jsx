@@ -8,7 +8,7 @@ const Table = ({ data }) => {
     let monthData = [];
     let yearData = [];
     monthData = data[year].map(({
-      principal, interest, amount, month,
+      principal, interest, amount, month, installmentNumber
     }) => {
       if (yearData.length === 0) {
         yearData.push({
@@ -25,6 +25,7 @@ const Table = ({ data }) => {
       }
       return (
         <tr key={amount}>
+        <td>{installmentNumber}</td>
           <td>{month}</td>
           <td>{formatCurrency(principal)}</td>
           <td>{formatCurrency(interest)}</td>
@@ -37,6 +38,7 @@ const Table = ({ data }) => {
       principal, interest, amount, month,
     }) => (
       <tr key={amount} className="year">
+        <td></td>
         <td>{month}</td>
         <td>{formatCurrency(principal)}</td>
         <td>{formatCurrency(interest)}</td>
@@ -53,6 +55,7 @@ const Table = ({ data }) => {
     <table>
       <thead>
         <tr>
+          <th>Instl No</th>
           <th>Month</th>
           <th>Principal</th>
           <th>Interest</th>
