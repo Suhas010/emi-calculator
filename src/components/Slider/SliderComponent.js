@@ -8,7 +8,7 @@ const SliderComponent = ({ value, min, max, step, onChange, onBlur, onFocus, uni
       <span className="popup">{value}</span>
     </div> */}
     <div className="selected-value">
-      <span className="value">{name === 'loanAmount' ? formatCurrency(value * 100000, 0) : value}</span>
+      <span className="value">{name === 'loanAmount' ? formatCurrency(value * 10000, 0) : value}</span>
       {unit && <span className="unit">{unit}</span>}
     </div>
     <div className="field">
